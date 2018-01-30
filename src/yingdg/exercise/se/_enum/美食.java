@@ -1,4 +1,4 @@
-package yingdg.exercise.se.jenum;
+package yingdg.exercise.se._enum;
 
 import java.util.Arrays;
 
