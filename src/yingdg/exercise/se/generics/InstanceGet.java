@@ -1,4 +1,4 @@
-package yingdg.exercise.se.generics.newinstance;
+package yingdg.exercise.se.generics;
 
 import java.lang.reflect.ParameterizedType;
 

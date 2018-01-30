@@ -9,6 +9,7 @@ package yingdg.exercise.se;
 反射
 枚举
 注解
+泛型
 多线程
 NIO
 并发

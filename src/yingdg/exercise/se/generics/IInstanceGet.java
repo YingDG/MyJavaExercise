@@ -1,4 +1,4 @@
-package yingdg.exercise.se.generics.newinstance;
+package yingdg.exercise.se.generics;
 
 /**
  * Created by yingdg on 2017/9/1 0001.
