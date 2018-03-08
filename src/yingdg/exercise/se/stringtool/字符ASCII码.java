@@ -33,6 +33,7 @@ public class 字符ASCII码 {
         int add = 52;
         int i4 = (z + add - 65) % 26;
         System.out.println((char) (65 + i4));
+
         // 字母前移
         int y = "b".codePointAt(0);
         int minus = 26;
