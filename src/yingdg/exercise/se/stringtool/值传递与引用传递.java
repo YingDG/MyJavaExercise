@@ -8,7 +8,7 @@ public class 值传递与引用传递 {
     char[] ch = {'a', 'b', 'c'};
 
     /*
-    java只有值传递
+    java只有值传递？
      */
     public static void main(String args[]) {
         值传递与引用传递 ex = new 值传递与引用传递();
@@ -20,7 +20,7 @@ public class 值传递与引用传递 {
     }
 
     public void change(String str, char ch[]) {
-        str = "test ok";
+        str = "test ok"; // String是final类
         ch[0] = 'g';
     }
 
