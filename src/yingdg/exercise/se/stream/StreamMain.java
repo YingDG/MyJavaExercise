@@ -2,10 +2,12 @@ package yingdg.exercise.se.stream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.LongSummaryStatistics;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author zdm
@@ -33,6 +35,14 @@ public class StreamMain {
         LongSummaryStatistics statistics = integers.stream().mapToLong(e -> e.longValue()).summaryStatistics();
         System.out.println(Objects.toString(statistics));
 
+        /*
+        Stream
+         */
+
+        Stream<Integer> integerStream = Stream.of(integers, Arrays.asList(11, 21))
+                .flatMap(Collection::stream);
+        List<Integer> collect = integerStream.collect(Collectors.toList());
+        System.out.println(collect);
     }
 
 }

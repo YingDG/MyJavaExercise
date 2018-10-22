@@ -48,8 +48,10 @@ public class JCFMain {
         integers.removeIf(e -> e.equals(1));
         System.out.println(integers);
 
-        //
+        // todo 多线程拆分迭代器
         Spliterator<Integer> spliterator = integers.spliterator();
+        Spliterator<Integer> integerSpliterator = spliterator.trySplit();
+        System.out.println(integerSpliterator);
         int characteristics = spliterator.characteristics();
         System.out.println(characteristics);
 
