@@ -64,11 +64,23 @@ public class JCFMain {
         List<String> collect1 = integers.stream().map(Object::toString).collect(Collectors.toList());
         System.out.println(collect1);
 
-        List<Integer> collect2 = integers2.stream().map(e -> {
+        List<Integer> integers3 = new ArrayList<>();
+        for (int i = 0; i < 1000000; i++) {
+            integers3.add(i);
+        }
+        final int num = 11;
+        long start = System.currentTimeMillis();
+        List<Integer> collect2 = integers3
+//                .parallelStream()
+                .stream()
+                .parallel()
+                .map(e -> {
             String s = e.toString();
-            return new Integer(s);
+            return e.equals(num) ? 666 : new Integer(s);
         }).collect(Collectors.toList());
-        System.out.println(collect2);
+        long end = System.currentTimeMillis();
+        System.out.println("time:" + (end - start));
+        System.out.println("并行:" + collect2.size());
 
         /*
         Map
