@@ -59,6 +59,17 @@ public class JCFMain {
         integers2.replaceAll(e -> 11);
         System.out.println(integers2);
 
+
+        // 映射
+        List<String> collect1 = integers.stream().map(Object::toString).collect(Collectors.toList());
+        System.out.println(collect1);
+
+        List<Integer> collect2 = integers2.stream().map(e -> {
+            String s = e.toString();
+            return new Integer(s);
+        }).collect(Collectors.toList());
+        System.out.println(collect2);
+
         /*
         Map
          */
