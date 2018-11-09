@@ -14,7 +14,7 @@ public class TogetherCounter implements Counter {
     private static final int THRESHOLD = 8000; // 本例6000-8000为宜
 
     public TogetherCounter() {
-        this.familyMember = Runtime.getRuntime().availableProcessors();
+        this.familyMember = Runtime.getRuntime().availableProcessors(); // 核心数1.5倍以下为宜
         this.pool = new ForkJoinPool(this.familyMember);
     }
 

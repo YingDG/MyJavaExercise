@@ -29,16 +29,16 @@ public class StreamMain {
         integers.stream().filter(e -> e < 6).sorted().distinct().forEach(System.out::print);
         System.out.println();
 
-        String i2 = integers.stream().map(e -> e.toString()).collect(Collectors.joining(", "));
+        String i2 = integers.stream().map(Object::toString).collect(Collectors.joining(", "));
         System.out.println(Objects.toString(i2));
 
-        LongSummaryStatistics statistics = integers.stream().mapToLong(e -> e.longValue()).summaryStatistics();
+        LongSummaryStatistics statistics = integers.stream().mapToLong(Integer::longValue).summaryStatistics();
         System.out.println(Objects.toString(statistics));
 
         /*
         Stream
          */
-
+        // 多合一
         Stream<Integer> integerStream = Stream.of(integers, Arrays.asList(11, 21))
                 .flatMap(Collection::stream);
         List<Integer> collect = integerStream.collect(Collectors.toList());
