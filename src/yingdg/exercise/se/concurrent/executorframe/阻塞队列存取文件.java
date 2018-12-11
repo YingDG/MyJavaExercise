@@ -18,7 +18,7 @@ public class 阻塞队列存取文件 {
 
     public static void main(String[] args) {
         // 初始化队列，能容纳100个元素
-        final BlockingQueue queue = new LinkedBlockingQueue(100);
+        final BlockingQueue<File> queue = new LinkedBlockingQueue<>(100);
          /*
         BlockingQueue是阻塞队列。
         该类主要提供了两个方法put()和take()，

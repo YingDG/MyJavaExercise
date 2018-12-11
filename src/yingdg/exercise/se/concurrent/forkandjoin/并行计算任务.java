@@ -12,7 +12,7 @@ import java.util.concurrent.RecursiveTask;
  */
 public class 并行计算任务 extends RecursiveTask<Integer> {
     /*
-    RecursiveAction对于没有返回结果的任务，RecursiveTask 对于返回结果的任务。
+    RecursiveAction对应没有返回结果的任务，RecursiveTask对应返回结果的任务。
     一般开发ForkJoin程序，主要是实现自定义ForkJoinTask。
      */
 

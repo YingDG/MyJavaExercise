@@ -28,10 +28,11 @@ class 旅程 implements Runnable {
 
     @Override
     public void run() {
+        // 本身是全流程，执行到某一阶段后等待其他线程也执行到这一阶段
         try {
             Thread.sleep(times[0] * 1000);
             System.out.println(now() + tourName + " Reached Shenzhen");
-            barrier.await(); // 每个线程都执行这一步才
+            barrier.await(); // 每个线程都执行这一步才继续
 
             Thread.sleep(times[1] * 1000);
             System.out.println(now() + tourName + " Reached Guangzhou");

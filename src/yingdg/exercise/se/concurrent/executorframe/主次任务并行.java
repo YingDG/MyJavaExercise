@@ -1,5 +1,6 @@
 package yingdg.exercise.se.concurrent.executorframe;
 
+import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -22,30 +23,34 @@ public class 主次任务并行 {
     其他重要的事情又必须做，等完成后，就可以做不重要的事情。
      */
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        ExecutorService exec = Executors.newFixedThreadPool(5);
+        ExecutorService exec = null;
+        try {
+            exec = Executors.newSingleThreadExecutor();
+            //                Executors.newFixedThreadPool(5);
 
-        Callable call = () -> {
-            Thread.sleep(1000 * 5);
-            return "Other less important but longtime things.";
-        };
+            Callable call = () -> {
+                Thread.sleep(1000 * 5);
+                return "Other less important but longtime things.";
+            };
 
-        // 首先开始的事情
-        System.out.println("Other less important things which is first");
-        Future task = exec.submit(call); // 开始不重要但开始必须执行的事情
-        /*
-        Future的重要方法包括get()和cancel()，get()获取数据对象，如果数据没有加载，就会阻塞直到取到数据，
-        而 cancel()是取消数据加载。
-        另外一个get(timeout)操作，表示如果在timeout时间内没有取到就失败抛出异常，而不再阻塞。
-        */
+            // 首先开始的事情
+            System.out.println("Other less important things which is first");
+            Future task = exec.submit(call); // 开始不重要但开始必须执行的事情
+            /*
+            Future的重要方法包括get()和cancel()，get()获取数据对象，如果数据没有加载，就会阻塞直到取到数据，
+            而 cancel()是取消数据加载。
+            另外一个get(timeout)操作，表示如果在timeout时间内没有取到就失败抛出异常，而不再阻塞。
+            */
 
-        // 重要的事情
-        Thread.sleep(1000 * 3);
-        System.out.println("\nLet's do important things.");
+            // 重要的事情
+            Thread.sleep(1000 * 3);
+            System.out.println("\nLet's do important things.");
 
-        // 其他不重要的事情
-        String obj = (String) task.get();
-        System.out.println(obj);
-
-        exec.shutdown();
+            // 其他不重要的事情
+            String obj = (String) task.get();
+            System.out.println(obj);
+        } finally {
+            if (Objects.nonNull(exec)) exec.shutdown();
+        }
     }
 }

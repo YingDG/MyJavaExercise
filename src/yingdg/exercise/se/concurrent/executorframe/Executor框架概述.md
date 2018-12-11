@@ -57,6 +57,11 @@ Concurrent Collections
 java.util.conrurrent下还有两个子包：
 1)java.util.concurrent.atomic包下是一组工具类，支持在单个变量上无锁线程安全编程。
 2)java.util.concurrent.locks包提供了一个用于锁定和等待条件的框架、不同于内建同步和监视器（synchronization and monitors）。
+    Lock接口，实现类ReentrantLock
+    ReadWriteLock接口，实现类ReentrantReadWriteLock
+    
+Exceptions
+    InterruptedException
 
 
 &&&引用：http://blog.csdn.net/wang_shuyu/article/details/53319098

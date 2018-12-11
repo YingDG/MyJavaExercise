@@ -3,6 +3,7 @@ package yingdg.exercise.se.concurrent.executorframe;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by yingdg on 2017/7/27.
@@ -32,11 +33,13 @@ public class 请求个数控制 {
                     semp.acquire();
                     System.out.println("Accessing: " + NO);
 
-                    Thread.sleep(3000);
-                    // 访问完后，释放
-                    semp.release();
+//                    Thread.sleep(3000);
+                    TimeUnit.SECONDS.sleep(3);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                } finally {
+                    // 访问完后，释放
+                    semp.release();
                 }
             };
 

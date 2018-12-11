@@ -40,7 +40,7 @@ public class 多条件都达标后继续业务流程 {
 
             Runnable run = () -> {
                 try {
-                    begin.await();
+                    begin.await(); // 所有线程等待主线程信号
 
                     Thread.sleep((long) (Math.random() * 10000));
                     System.out.println("No." + NO + " arrived");

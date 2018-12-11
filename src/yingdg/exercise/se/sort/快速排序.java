@@ -62,6 +62,7 @@ public class 快速排序 {
                 a[end] = temp;
             }
             System.out.println("第" + count + "次从前往后比较：" + Arrays.toString(a) + "\n");
+
             count++;
         }
 
