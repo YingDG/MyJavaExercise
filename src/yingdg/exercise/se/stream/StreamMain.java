@@ -3,8 +3,10 @@ package yingdg.exercise.se.stream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.LongSummaryStatistics;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -29,7 +31,7 @@ public class StreamMain {
         integers.stream().filter(e -> e < 6).sorted().distinct().forEach(System.out::print);
         System.out.println();
 
-        String i2 = integers.stream().map(Object::toString).collect(Collectors.joining(", "));
+        String i2 = integers.stream().map(Object::toString).peek(System.out::println).collect(Collectors.joining(", "));
         System.out.println(Objects.toString(i2));
 
         LongSummaryStatistics statistics = integers.stream().mapToLong(Integer::longValue).summaryStatistics();
@@ -43,6 +45,15 @@ public class StreamMain {
                 .flatMap(Collection::stream);
         List<Integer> collect = integerStream.collect(Collectors.toList());
         System.out.println(collect);
+
+        // map
+        Map<String, String> map = new HashMap<>();
+        map.putIfAbsent("a", "a");
+        map.forEach((k, v) -> System.out.print(k + v));
+
+        // 分类
+        Map<String, List<Integer>> collect1 = integers.stream().collect(Collectors.groupingBy(Object::toString));
+        System.out.println(collect1);
     }
 
 }
