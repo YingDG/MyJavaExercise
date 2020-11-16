@@ -1,5 +1,7 @@
 package yingdg.exercise.se.time;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -29,5 +31,16 @@ public class TimeMain {
         // enum
         int value = Month.JANUARY.getValue();
         System.out.println(value);
+
+        // 转日期
+        String dateStr = "2020-07-37";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            format.setLenient(false); // 防止非法转换
+            Date date = format.parse(dateStr);
+            System.out.println(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
