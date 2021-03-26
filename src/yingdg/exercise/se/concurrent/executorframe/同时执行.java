@@ -21,7 +21,7 @@ public class 同时执行 {
      */
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         ExecutorService exec = Executors.newFixedThreadPool(10);
-        CompletionService<String> serv = new ExecutorCompletionService(exec);
+        CompletionService<String> serv = new ExecutorCompletionService<>(exec);
         /*
         该接口有两个重要方法：submit()和take()。
         submit用于提交一个runnable或者callable，一般会提交给一个线程池处理；

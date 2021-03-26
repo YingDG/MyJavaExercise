@@ -17,7 +17,7 @@ public class 请求个数控制 {
         ExecutorService exec = Executors.newCachedThreadPool();
 
         // 只能5个线程同时访问
-        final Semaphore semp = new Semaphore(5);
+        final Semaphore semp = new Semaphore(200);
         /*
         声明一个只有5个许可的Semaphore，而有20个线程要访问这个资源，
         acquire()获取一个许可，如果没有就等待，而release()释放一个许可。

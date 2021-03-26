@@ -76,9 +76,9 @@ public class 多线程完成单个分步等待业务流程 {
         int[] timeBus = {2, 4, 6, 6, 7};
 
         // 三个旅行团
-        CyclicBarrier barrier = new CyclicBarrier(3); // 可以有多次await操作
+        final CyclicBarrier barrier = new CyclicBarrier(3); // 可以有多次await操作
         /*
-        CyclicBarrier最重要的属性就是参与者个数，另外最要方法是await()。
+        CyclicBarrier最重要的属性就是参与者个数，另外最主要方法是await()。
         当所有线程都调用了await()后，就表示这些线程都可以继续执行，否则就会等待。
          */
 

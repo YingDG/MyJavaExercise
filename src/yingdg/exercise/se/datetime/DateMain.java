@@ -14,6 +14,7 @@ public class DateMain {
         LocalDate localDate = LocalDate.now().minusDays(1);
         ZoneId zoneId = ZoneId.systemDefault();
         ZonedDateTime zonedDateTime = localDate.atStartOfDay(zoneId);
+
         Date date = Date.from(zonedDateTime.toInstant());
         System.out.println(date);
     }

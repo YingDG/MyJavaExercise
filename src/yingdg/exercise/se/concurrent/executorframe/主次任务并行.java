@@ -1,11 +1,13 @@
 package yingdg.exercise.se.concurrent.executorframe;
 
-import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by yingdg on 2017/7/27.
@@ -22,20 +24,21 @@ public class 主次任务并行 {
     一个非常耗时的操作必须一开始启动，但又不能一直等待；
     其他重要的事情又必须做，等完成后，就可以做不重要的事情。
      */
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) throws ExecutionException, InterruptedException, TimeoutException {
         ExecutorService exec = null;
         try {
             exec = Executors.newSingleThreadExecutor();
             //                Executors.newFixedThreadPool(5);
 
-            Callable call = () -> {
-                Thread.sleep(1000 * 5);
+            Callable<String> call = () -> {
+//                Thread.sleep(1000 * 5);
+                TimeUnit.SECONDS.sleep(5L);
                 return "Other less important but longtime things.";
             };
 
             // 首先开始的事情
             System.out.println("Other less important things which is first");
-            Future task = exec.submit(call); // 开始不重要但开始必须执行的事情
+            Future<String> task = exec.submit(call); // 开始不重要但开始必须执行的事情
             /*
             Future的重要方法包括get()和cancel()，get()获取数据对象，如果数据没有加载，就会阻塞直到取到数据，
             而 cancel()是取消数据加载。
@@ -43,14 +46,22 @@ public class 主次任务并行 {
             */
 
             // 重要的事情
-            Thread.sleep(1000 * 3);
+//            Thread.sleep(1000 * 3);
+            TimeUnit.SECONDS.sleep(3L);
             System.out.println("\nLet's do important things.");
 
+            while (!task.isDone()) {
+                TimeUnit.SECONDS.sleep(1L);
+                System.out.println("undone");
+            }
+
             // 其他不重要的事情
-            String obj = (String) task.get();
+            System.out.println(task.get(3, TimeUnit.SECONDS));
+            String obj = task.get(); // 阻塞等待返回结果
             System.out.println(obj);
         } finally {
-            if (Objects.nonNull(exec)) exec.shutdown();
+//            if (Objects.nonNull(exec)) exec.shutdown();
+            Optional.ofNullable(exec).ifPresent(ExecutorService::shutdown);
         }
     }
 }
